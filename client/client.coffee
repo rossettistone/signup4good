@@ -1,22 +1,31 @@
-Template.content.users = () ->
+Template.homePage.users = () ->
   # database query here
   allUsers = Meteor.users.find().fetch();
   return _(allUsers).map( (user) ->
     return user
   )
 
-Template.content.organizations = () ->
+Template.homePage.organizations = () ->
   # database query here
   return "Welcome to signup."
 
-Template.content.events = () ->
+Template.homePage.events = () ->
   # database query here
   return "Welcome to signup."
 
 Template.topnav.events({
-  'click .getstarted': () ->
-    Session.set 'registration', true
+  'click .home': () ->
+    router.navigate 'home', {trigger: true}
+  'click .register': () ->
+    router.navigate 'registration', {trigger: true}
 })
 
-Template.content.showRegistration = () ->
-  Session.get 'registration'
+
+Template.router.showHomePage = () ->
+  Session.get('currentPage') == 'homePage'
+
+Template.router.showRegistrationPage = () ->
+  Session.get('currentPage') == 'registrationPage'
+
+Template.router.showLoginPage = () ->
+  Session.get('currentPage') == 'loginPage'

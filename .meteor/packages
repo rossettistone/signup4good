@@ -12,3 +12,5 @@ coffeescript
 bootstrap
 email
 accounts-ui
+underscore
+backbone
