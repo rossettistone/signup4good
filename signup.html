@@ -12,18 +12,45 @@
 
 <template name="content">
   <div class="row-fluid">
-    <div class="span12 well">
-      <h1>Welcome!</h1>
+    <div class="hero-unit">
+      <h1>Discover, Sign Up, Volunteer!</h1>
+      <p>Find a place to make a difference and sign up quickly.</p>
+      <p>
+        <input type="text" class="form-control col-lg-8" placeholder="Search">
+        <button class="search-submit btn btn-primary">Submit</button>
+      </p>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span6 well">
       <h2>Users:</h2>
       {{#each users}}
         <img src="{{profile.picture}}">
       {{/each}}
+    </div>
+    <div class="span6 well">
       <h2>Organizations:</h2>
       {{organizations}}
       <h2>Events:</h2>
       {{events}}
     </div>
   </div>
+  <div class="row">
+    <div class="row">
+      <div class="span4 well well-small">Detail 1</div>
+      <div class="span4 well well-small">Detail 2</div>
+      <div class="span4 well well-small">Detail 3</div>
+    </div>
+    <div class="row">
+      <div class="span4 well well-small">Detail 1</div>
+      <div class="span4 well well-small">Detail 2</div>
+      <div class="span4 well well-small">Detail 3</div>
+    </div>
+  </div>
+
+
+
+
   <div class="row-fluid">
     {{#if showRegistration}}
       <div>{{> registration}}</div>
