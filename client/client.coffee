@@ -6,12 +6,10 @@ Template.homePage.users = () ->
   )
 
 Template.homePage.organizations = () ->
-  # database query here
-  return "Welcome to signup."
+  Organizations.find({}).fetch()
 
 Template.homePage.events = () ->
-  # database query here
-  return "Welcome to signup."
+  Events.find({}).fetch()
 
 Template.topnav.events({
   'click .home': () ->

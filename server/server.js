@@ -5,3 +5,64 @@ Accounts.onCreateUser(function(options, user) {
     }
     return user;
 });
+
+function create_event(org_id) {
+  return {
+    event_name:'best event ever',
+    num_slots:10, type:'management', is_one_time:true, org_id:[org_id]
+  }
+}
+
+Meteor.startup(function () {
+
+  // Organizations can create accounts
+  //   Email Address
+  //   Phone
+  //   Waitlist (cap?)
+
+  // Event
+  //   -Number of slots
+  //   -Type of activity
+  //   -One-time or repeating
+  //   -Location
+
+  Organizations.remove({})
+  Events.remove({})
+
+  // code to run on server at startup
+  if (Organizations.find().count() === 0) {
+    default_org = {
+      'point_of_contact':'Max Org',
+      address:'555 Foo Lane', email:'foo@bar.org', phone:'555-555-5555',
+      waitlist:[], event_ids:[]
+    }
+
+    _(['Foo Org', 'Bar Org', 'Baz Org']).each(function (org_name) {
+      default_org.org_name = org_name
+      Organizations.insert(default_org, function (err, org_id) {
+        _(['Foo Event', 'Bar Event', 'Baz Event']).each(function (event_name) {
+          console.log('creating event:', org_id)
+          new_event = create_event(org_id)
+          new_event.event_name = event_name
+          Events.insert(new_event)
+          Organizations.update(
+            {_id:org_id}, 
+            {$push:{event_ids:new_event._id}})
+        })
+      })
+    })
+  }
+
+  // if (Volunteer.find().count() === 0) {
+  //   default_volunteer = {
+  //     'name':'Bob Volun',
+  //     address:'777 Bar Road', email:'bar@volun.com', phone:'555-555-5555',
+  //     waitlist:[]}
+
+  //   var names = ["Foo Org", "Bar Org", "Baz Org"];
+  //   for (var i = 0; i < names.length; i++) {
+  //     default_org['name'] = names[i]
+  //     Volunteer.insert(default_org)
+  //   }
+  // }
+});
