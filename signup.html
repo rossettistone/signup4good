@@ -19,7 +19,9 @@
         <img src="{{profile.picture}}">
       {{/each}}
       <h2>Organizations:</h2>
-      {{organizations}}
+      {{#each organizations}}
+        {{org_name}}
+      {{/each}}
       <h2>Events:</h2>
       {{events}}
     </div>

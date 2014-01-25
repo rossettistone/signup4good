@@ -14,8 +14,6 @@ function create_event(org_id) {
 }
 
 Meteor.startup(function () {
-  Org = new Meteor.Collection("orgs");
-  Event = new Meteor.Collection("events");
 
   // Organizations can create accounts
   //   Email Address
@@ -28,8 +26,10 @@ Meteor.startup(function () {
   //   -One-time or repeating
   //   -Location
 
+  Organizations.remove({})
+
   // code to run on server at startup
-  if (Org.find().count() === 0) {
+  if (Organizations.find().count() === 0) {
     default_org = {
       'point_of_contact':'Max Org',
       address:'555 Foo Lane', email:'foo@bar.org', phone:'555-555-5555',
@@ -38,14 +38,14 @@ Meteor.startup(function () {
 
     var org_names = ['Foo Org', 'Bar Org', 'Baz Org'];
     for (var i = 0; i < org_names.length; i++) {
-      default_org['name'] = org_names[i]
-      Org.insert(default_org, function (err, org_id) {
+      default_org.org_name = org_names[i]
+      Organizations.insert(default_org, function (err, org_id) {
         var event_names = ['Foo Event', 'Bar Event', 'Baz Event']
         for(var i = 0; i < event_names; i++) {
           new_event = create_event(org_id)
           new_event.name = event_names[i]
           Event.insert(new_event)
-          Org.update(
+          Organizations.update(
             {_id:org_id}, 
             {$push:{event_ids:new_event._id}})
         }

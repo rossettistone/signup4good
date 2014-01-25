@@ -1,3 +1,4 @@
+
 Template.content.users = () ->
   # database query here
   allUsers = Meteor.users.find().fetch();
@@ -7,7 +8,8 @@ Template.content.users = () ->
 
 Template.content.organizations = () ->
   # database query here
-  return "Welcome to signup."
+  Organizations.find({}).fetch()
+  # return "Welcome to signup."
 
 Template.content.events = () ->
   # database query here
