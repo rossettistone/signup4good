@@ -15,7 +15,9 @@
     <div class="span12 well">
       <h1>Welcome!</h1>
       <h2>Users:</h2>
-      {{users}}
+      {{#each users}}
+        <img src="{{profile.picture}}">
+      {{/each}}
       <h2>Organizations:</h2>
       {{organizations}}
       <h2>Events:</h2>
