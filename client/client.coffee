@@ -25,5 +25,9 @@ Template.router.showHomePage = () ->
 Template.router.showRegistrationPage = () ->
   Session.get('currentPage') == 'registrationPage'
 
-Template.router.showLoginPage = () ->
-  Session.get('currentPage') == 'loginPage'
+Template.router.showEventPage = () ->
+  Session.get('currentPage') == 'eventPage'
+
+Template.event.volunteers = () ->
+  return [{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"},{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"}]
+

@@ -1,0 +1,41 @@
+<template name="event">
+  <div class="row-fluid">
+    <div class="well">
+      <div class="span6">
+        <div class="well well-small">
+          <h1>Event Title</h1>
+          <div class="event-details">
+            <div>Time</div>
+            <div>Location</div>
+          </div>
+        </div>
+      </div>
+      <div class="span6 ">
+        <div class="well well-small">
+          <div>Organization</div>
+          <img src="http://upload.wikimedia.org/wikipedia/en/2/27/House_Atreides_Insignia.jpg" />
+          <div>Description</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <h3>Spots</h3>
+    <div class="row-fluid">
+      {{#each volunteers}}
+        <div class="grid-10">
+          <div>
+            <div>{{name}}</div>
+            <img src="http://octodex.github.com/images/dunetocat.png" />
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="row-fluid">
+    <h3>Messages</h2>
+    <div class="well">
+      Lorem ipsem dolor sit amet
+    </div>
+  </div>
+</template>
