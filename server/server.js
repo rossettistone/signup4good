@@ -27,6 +27,7 @@ Meteor.startup(function () {
   //   -Location
 
   Organizations.remove({})
+  Events.remove({})
 
   // code to run on server at startup
   if (Organizations.find().count() === 0) {
@@ -36,21 +37,20 @@ Meteor.startup(function () {
       waitlist:[], event_ids:[]
     }
 
-    var org_names = ['Foo Org', 'Bar Org', 'Baz Org'];
-    for (var i = 0; i < org_names.length; i++) {
-      default_org.org_name = org_names[i]
+    _(['Foo Org', 'Bar Org', 'Baz Org']).each(function (org_name) {
+      default_org.org_name = org_name
       Organizations.insert(default_org, function (err, org_id) {
-        var event_names = ['Foo Event', 'Bar Event', 'Baz Event']
-        for(var i = 0; i < event_names; i++) {
+        _(['Foo Event', 'Bar Event', 'Baz Event']).each(function (event_name) {
+          console.log('creating event:', org_id)
           new_event = create_event(org_id)
-          new_event.name = event_names[i]
-          Event.insert(new_event)
+          new_event.event_name = event_name
+          Events.insert(new_event)
           Organizations.update(
             {_id:org_id}, 
             {$push:{event_ids:new_event._id}})
-        }
+        })
       })
-    }
+    })
   }
 
   // if (Volunteer.find().count() === 0) {

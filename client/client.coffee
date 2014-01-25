@@ -7,13 +7,10 @@ Template.content.users = () ->
   )
 
 Template.content.organizations = () ->
-  # database query here
   Organizations.find({}).fetch()
-  # return "Welcome to signup."
 
 Template.content.events = () ->
-  # database query here
-  return "Welcome to signup."
+  Events.find({}).fetch()
 
 Template.topnav.events({
   'click .getstarted': () ->
