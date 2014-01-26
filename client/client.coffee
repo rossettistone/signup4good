@@ -16,14 +16,15 @@ Template.topnav.events({
     router.navigate 'home', {trigger: true}
   'click .register': () ->
     router.navigate 'registration', {trigger: true}
+  'click .sign-out': () ->
+    router.navigate 'sign_out', {trigger: true}
 })
 
-Template.homePage.events({
-  'click .event': () ->
+Template.front_event.events({
+  'click .btn': () ->
     console.log this._id
     router.navigate 'event/'+this._id, {trigger: true}
 })
-
 
 Template.router.showHomePage = () ->
   Session.get('currentPage') == 'homePage'
