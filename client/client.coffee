@@ -15,14 +15,14 @@ Template.topnav.events({
   'click .home': () ->
     router.navigate 'home', {trigger: true}
   'click .register': () ->
-    router.navigate 'registration', {trigger: true}
+    $('.signup').modal()
   'click .sign-out': () ->
     router.navigate 'sign_out', {trigger: true}
 })
 
 Template.front_event.events({
   'click .btn': () ->
-    router.navigate 'event/'+this._id, {trigger: true}
+    router.navigate 'event/'+this._id, {trigger: true},
 })
 
 Template.router.showHomePage = () ->
