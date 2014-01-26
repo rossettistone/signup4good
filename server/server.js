@@ -33,8 +33,8 @@ Meteor.startup(function () {
   //   -One-time or repeating
   //   -Location
 
-  Organizations.remove({})
-  Events.remove({})
+  // Organizations.remove({})
+  // Events.remove({})
 
   var event_names = {
     'Foo Org':['Foo Event', 'Bar Event', 'Baz Event'],
@@ -58,7 +58,7 @@ Meteor.startup(function () {
           new_event.event_name = event_name
           Events.insert(new_event)
           Organizations.update(
-            {_id:org_id}, 
+            {_id:org_id},
             {$push:{event_ids:new_event._id}})
         })
       })

@@ -35,8 +35,18 @@ Template.router.showEventPage = () ->
   Session.get('currentPage') == 'eventPage'
 
 Template.event.volunteers = () ->
+  event = getEventData()
+
+  event.volunteers = [{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"}]
+  spots = event.volunteers
+  while(spots.length < event.num_slots)
+    spots.push({name: "Wally"})
+  return spots
+
+Template.event.eventData = () ->
+  getEventData()
+
+getEventData = () ->
   url = Backbone.history.fragment
   eventId = url.slice(url.indexOf('/')+1)
-  event = Events.findOne({_id:eventId})
-  event.volunteers
-  # return [{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"},{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"}]
+  Events.findOne({_id:eventId})
