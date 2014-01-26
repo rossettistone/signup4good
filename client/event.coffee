@@ -22,6 +22,10 @@ Template.event.slotsAvailable = () ->
   return event.num_slots > event.volunteers.length
 
 Template.event.events({
+  'click .orglink': () ->
+    event = getEventData()
+    orgId = event.org_id
+    router.navigate 'organization/'+orgId, {trigger: true}
   'click .signup': () ->
     eventId = getEventData()._id
     Events.update({_id:eventId}, $push:{volunteers:Meteor.user()})

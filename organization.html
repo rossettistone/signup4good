@@ -2,20 +2,21 @@
   {{#with organizationData}}
   <div class="row-fluid">
     <div class="well">
-      <div class="span6">
-        <div class="well well-small">
-          <h1>{{org_name}}</h1>
-          <div class="organization-details">
-            <div>Address: {{address}}</div>
-            <div>Phone: {{phone}}</div>
-            <div>Email: {{email}}</div>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="well well-small">
+            <h1>{{org_name}}</h1>
+            <div class="organization-details">
+              <div>Address: {{address}}</div>
+              <div>Phone: {{phone}}</div>
+              <div>Email: {{email}}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="span6">
-        <div class="well well-small">
-          <div>Organization</div>
-          <img src="{{image_name}}" />
+        <div class="span6">
+          <div class="well well-small">
+            <img src="{{image_name}}" />
+          </div>
         </div>
       </div>
       <div class="row-fluid">
@@ -47,12 +48,16 @@
 
 <template name="createEvent">
   <form>
-    <label>Event Name</label>
-    <input type="text" placeholder="Enter an event name">
-    <label>Date</label>
-    <input type="text">
-    <label># of Attendees</label>
-    <input type="text">
-    <button type="submit" class="btn">Create</button>
+    <div>Event Name</div>
+    <input class="form-eventname" type="text" placeholder="Enter an event name">
+    <div>Date</div>
+    <input class="form-date" type="text">
+    <div>Type</div>
+    <input class="form-eventtype" type="text">
+    <div># of Attendees</div>
+    <input class="form-numattendees" type="text">
+    <div>Description</div>
+    <input class="form-description" placeholder="This event is going to be wonderful for the community, and so much fun!" type="text">
+    <button class="btn btn-primary">Create</button>
   </form>
 </template>

@@ -21,10 +21,12 @@ function create_event(org_id) {
 
   return {
     event_name:'best event ever',
-    num_slots:10, type:'management', is_one_time:true, org_id:[org_id],
+    num_slots:10,
+    type:'management',
+    is_one_time:true,
+    org_id:org_id,
     description:'This is a test description.  It continues for some time.',
     image_name:image_names[Math.floor(Math.random() * image_names.length)],
-    user_ids:[],
     volunteers: []
   }
 }
@@ -66,8 +68,12 @@ Meteor.startup(function () {
   if (Organizations.find().count() === 0) {
     default_org = {
       'point_of_contact':'Max Org',
-      address:'555 Foo Lane', email:'foo@bar.org', phone:'555-555-5555',
-      waitlist:[], event_ids:[]
+      address:'555 Foo Lane',
+      email:'foo@bar.org',
+      phone:'555-555-5555',
+      description:'We are an awesome organization that does good things.',
+      waitlist:[],
+      event_ids:[]
     }
 
     _(Object.keys(event_names)).each(function (org_name) {
@@ -76,10 +82,11 @@ Meteor.startup(function () {
         _(event_names[org_name]).each(function (event_name) {
           new_event = create_event(org_id)
           new_event.event_name = event_name
-          Events.insert(new_event)
+          var eventRecord = Events.insert(new_event)
           Organizations.update(
             {_id:org_id},
-            {$push:{event_ids:new_event._id}})
+            {$push:{event_ids:eventRecord}
+          });
         })
       })
     })
