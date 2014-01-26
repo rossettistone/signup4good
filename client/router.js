@@ -12,11 +12,6 @@ var Router = Backbone.Router.extend({
     Session.set('currentPage', 'homePage');
   },
 
-  registration: function () {
-    // Registration page/modal
-    Session.set('currentPage', 'registrationPage');
-  },
-
   event: function (id) {
     // Registration page/modal
     Session.set('currentPage', 'eventPage');
