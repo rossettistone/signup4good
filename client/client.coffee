@@ -22,7 +22,6 @@ Template.topnav.events({
 
 Template.front_event.events({
   'click .btn': () ->
-    console.log this._id
     router.navigate 'event/'+this._id, {trigger: true}
 })
 
@@ -36,5 +35,8 @@ Template.router.showEventPage = () ->
   Session.get('currentPage') == 'eventPage'
 
 Template.event.volunteers = () ->
-  return [{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"},{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"}]
-
+  url = Backbone.history.fragment
+  eventId = url.slice(url.indexOf('/')+1)
+  event = Events.findOne({_id:eventId})
+  event.volunteers
+  # return [{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"},{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"}]
