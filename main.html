@@ -14,6 +14,26 @@
 <template name="router">
   {{#if showHomePage}}
     {{> homePage}}
+    <div class="signup-modal modal fade well">
+      <form role="form">
+        <div class="form-group">
+          <h2>Signup...</h2>
+
+          <div class="radio">
+            <label>
+              <input type="radio" name="signup-type" checked>I'm a volunteer
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="signup-type">I'm an organization
+            </label>
+          </div>
+
+          {{loginButtons}}
+        </div>
+      </form>
+    </div>
   {{/if}}
   {{#if showEventPage}}
     {{> event}}
@@ -73,17 +93,6 @@
     </div>
   </div>
 
-  <div class="signup-modal modal fade">
-    <h2>Signup...</h2>
-    {{loginButtons}}
-    <div class='row-fluid'>
-      <input type="radio" name='test-group' checked><span>I'm a volunteer.</span>
-    </div>
-    <div class='row-fluid'>
-      <input type="radio" name='test-group'><span>I'm an organization.</span>
-    </div>
-  </div>
-
   <div class="org-modal modal fade">
     <h2>Organization Info</h2>
     <div class="row-fluid" style="margin-top:10px">
@@ -102,8 +111,8 @@
   <div class="navbar-inner">
     <a class="brand" href="/">signup4good</a>
     <ul class="nav">
-      <li class='register'><a href="#">Get started</a></li>
-      <li><a href="#">Sign out</a></li>
+      <li class='register'><a>Get started</a></li>
+      <li><a>Sign out</a></li>
     </ul>
   </div>
 </div>
