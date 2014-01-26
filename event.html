@@ -11,10 +11,15 @@
             <div>Type: {{type}}</div>
           </div>
         </div>
-        {{#if attending}}
-          <button class='unsignup btn btn-default'>Sorry, can't make it...</button>
+        {{#if slotsAvailable}}
+          {{#if attending}}
+            <button class='unsignup btn btn-default'>Sorry, can't make it...</button>
+          {{else}}
+            <button class='signup btn btn-primary'>Sign Me Up!</button>
+          {{/if}}
         {{else}}
-          <button class='signup btn btn-primary'>Sign Me Up!</button>
+            <div>Event is Full!</div>
+            <button class="btn btn-disabled">Join Waitlist</button>
         {{/if}}
       </div>
       <div class="span6">
@@ -44,7 +49,19 @@
   <div class="row-fluid">
     <h3>Messages</h2>
     <div class="well">
-      Lorem ipsem dolor sit amet
+      {{> messages}}
     </div>
   </div>
+</template>
+
+
+<template name="messages">
+  <textarea class="messagecontent"></textarea>
+  <button class="postmessage btn btn-primary">Post Message</button>
+  {{#each allMessages}}
+    <div class="well well-small clearfix">
+      <img class="pull-left" src="{{user.profile.picture}}">
+      <div>{{content}}</div>
+    </div>
+  {{/each}}
 </template>

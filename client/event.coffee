@@ -17,6 +17,10 @@ Template.event.attending = () ->
   )
   return isAttending
 
+Template.event.slotsAvailable = () ->
+  event = getEventData()
+  return event.num_slots > event.volunteers.length
+
 Template.event.events({
   'click .signup': () ->
     eventId = getEventData()._id
@@ -26,7 +30,19 @@ Template.event.events({
     Events.update({_id:eventId}, $pull:{volunteers:Meteor.user()})
 })
 
+Template.messages.events({
+  'click .postmessage': () ->
+    eventId = getEventData()._id
+    message = $('.messagecontent').val()
+    Events.update({_id:eventId}, $push:{messages:{user:Meteor.user(), content:message}})
+})
+
+Template.messages.allMessages = () ->
+  eventId = getEventData()._id
+  return Events.findOne({_id:eventId}).messages
+
 getEventData = () ->
+  # TODO: this is firing too soon if the app loads on /events page
   url = Backbone.history.fragment
   eventId = url.slice(url.indexOf('/')+1)
   Events.findOne({_id:eventId})
