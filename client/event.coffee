@@ -28,9 +28,9 @@ Template.event.events({
     Meteor.call('sendEventRegEmail', Meteor.user().services.facebook.email, event.event_name)
   'click .unsignup': () ->
     event = getEventData()
-    eventId = eventId._id
+    eventId = event._id
     Events.update({_id:eventId}, $pull:{volunteers:Meteor.user()})
-})
+});
 
 Template.messages.events({
   'click .postmessage': () ->

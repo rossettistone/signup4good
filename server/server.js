@@ -24,7 +24,8 @@ function create_event(org_id) {
     num_slots:10, type:'management', is_one_time:true, org_id:[org_id],
     description:'This is a test description.  It continues for some time.',
     image_name:image_names[Math.floor(Math.random() * image_names.length)],
-    user_ids:[]
+    user_ids:[],
+    volunteers: []
   }
 }
 
