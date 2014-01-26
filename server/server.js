@@ -1,8 +1,16 @@
+process.env.MAIL_URL = "smtp://signup4good:signup4good@smtp.sendgrid.net:465";
+
 Accounts.onCreateUser(function(options, user) {
     if (options.profile) {
         options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
         user.profile = options.profile;
     }
+
+    Email.send({from:'info@signup4good.com',
+                to:[user.services.facebook.email,'mark.a.rossetti@gmail.com'],
+                subject:'Welcome to Sign Up for Good!',
+                text:'Thanks for signing up. It\'s time to get volunteering!'});
+
     return user;
 });
 

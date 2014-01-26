@@ -4,6 +4,7 @@ var Router = Backbone.Router.extend({
     'home':             'home', //this will be http://your_domain/
     'registration':     'registration',  // http://your_domain/registration
     'event/:id':        'event',
+    'organization/:id':        'organization',
     'sign_out':         'sign_out'
   },
 
@@ -16,6 +17,12 @@ var Router = Backbone.Router.extend({
     // Registration page/modal
     Session.set('currentPage', 'eventPage');
     Session.set('eventId', id);
+  },
+
+  organization: function (id) {
+    // Registration page/modal
+    Session.set('currentPage', 'organizationPage');
+    Session.set('organizationId', id);
   },
 
   sign_out: function() {

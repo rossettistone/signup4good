@@ -33,3 +33,6 @@ Template.router.showRegistrationPage = () ->
 
 Template.router.showEventPage = () ->
   Session.get('currentPage') == 'eventPage'
+
+Template.router.showOrganizationPage = () ->
+  Session.get('currentPage') == 'organizationPage'
