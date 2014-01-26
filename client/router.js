@@ -1,25 +1,26 @@
 var Router = Backbone.Router.extend({
   routes: {
-    "":                 "home", //this will be http://your_domain/
-    "home":             "home", //this will be http://your_domain/
-    "registration":     "registration",  // http://your_domain/registration
-    "login":            "login",
-    "sign_out":         "sign_out"
+    '':                 'home', //this will be http://your_domain/
+    'home':             'home', //this will be http://your_domain/
+    'registration':     'registration',  // http://your_domain/registration
+    'event/:id':        'event',
+    'sign_out':         'sign_out'
   },
 
-  home: function() {
+  home: function () {
     // Your homepage code
     Session.set('currentPage', 'homePage');
   },
 
-  registration: function() {
+  registration: function () {
     // Registration page/modal
     Session.set('currentPage', 'registrationPage');
   },
 
-  login: function() {
+  event: function (id) {
     // Registration page/modal
-    Session.set('currentPage', 'loginPage');
+    Session.set('currentPage', 'eventPage');
+    Session.set('eventId', id);
   },
 
   sign_out: function() {
@@ -27,7 +28,7 @@ var Router = Backbone.Router.extend({
   }
 });
 
-router = new Router;
+router = new Router();
 
 Meteor.startup(function () {
   Backbone.history.start({pushState: true});
