@@ -7,9 +7,15 @@ Accounts.onCreateUser(function(options, user) {
 });
 
 function create_event(org_id) {
+  image_names = [
+    'kids.jpg', 'ladies.jpg', 'pantry.jpg', 'plants.jpg', 'plants.jpg',
+    'tutor.jpg', 'yard.jpg']
+
   return {
     event_name:'best event ever',
-    num_slots:10, type:'management', is_one_time:true, org_id:[org_id]
+    num_slots:10, type:'management', is_one_time:true, org_id:[org_id],
+    description:'This is a test description.  It continues for some time.',
+    image_name:image_names[Math.floor(Math.random() * image_names.length)]
   }
 }
 
@@ -41,7 +47,6 @@ Meteor.startup(function () {
       default_org.org_name = org_name
       Organizations.insert(default_org, function (err, org_id) {
         _(['Foo Event', 'Bar Event', 'Baz Event']).each(function (event_name) {
-          console.log('creating event:', org_id)
           new_event = create_event(org_id)
           new_event.event_name = event_name
           Events.insert(new_event)

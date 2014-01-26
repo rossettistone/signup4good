@@ -23,6 +23,16 @@
   {{/if}}
 </template>
 
+<template name="front_event">
+  <div class="front-event span4 well well-small">
+    <img class="span3" src='{{image_name}}'>
+    <div class="span9">
+      <h3>{{event_name}}</h3>
+      <p>{{description}}</p>
+    </div>
+  </div>
+</template>
+
 
 <template name="homePage">
   <div class="row-fluid">
@@ -51,7 +61,7 @@
       </ol>
       <h2>Events:</h2>
       <ol>
-      {{#each events}}
+      {{#each events 0 6}}
         <li>{{event_name}}</li>
       {{/each}}
     </ol>
@@ -59,14 +69,14 @@
   </div>
   <div class="row-fluid">
     <div class="row-fluid">
-      <div class="span4 well well-small">Detail 1</div>
-      <div class="span4 well well-small">Detail 2</div>
-      <div class="span4 well well-small">Detail 3</div>
+      {{#each events 0 3}}
+        {{> front_event}}
+      {{/each}}
     </div>
     <div class="row-fluid">
-      <div class="span4 well well-small">Detail 1</div>
-      <div class="span4 well well-small">Detail 2</div>
-      <div class="span4 well well-small">Detail 3</div>
+      {{#each events 3 3}}
+        {{> front_event}}
+      {{/each}}
     </div>
   </div>
 </template>
