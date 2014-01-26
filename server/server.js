@@ -15,7 +15,8 @@ function create_event(org_id) {
     event_name:'best event ever',
     num_slots:10, type:'management', is_one_time:true, org_id:[org_id],
     description:'This is a test description.  It continues for some time.',
-    image_name:image_names[Math.floor(Math.random() * image_names.length)]
+    image_name:image_names[Math.floor(Math.random() * image_names.length)],
+    user_ids:[]
   }
 }
 
@@ -35,6 +36,12 @@ Meteor.startup(function () {
   Organizations.remove({})
   Events.remove({})
 
+  var event_names = {
+    'Foo Org':['Foo Event', 'Bar Event', 'Baz Event'],
+    'Color Org':['Red Event', 'Blue Event', 'Green Event'],
+    'Shape Org':['Square event', 'Triangle event', 'circle event']
+  }
+
   // code to run on server at startup
   if (Organizations.find().count() === 0) {
     default_org = {
@@ -43,10 +50,10 @@ Meteor.startup(function () {
       waitlist:[], event_ids:[]
     }
 
-    _(['Foo Org', 'Bar Org', 'Baz Org']).each(function (org_name) {
+    _(Object.keys(event_names)).each(function (org_name) {
       default_org.org_name = org_name
       Organizations.insert(default_org, function (err, org_id) {
-        _(['Foo Event', 'Bar Event', 'Baz Event']).each(function (event_name) {
+        _(event_names[org_name]).each(function (event_name) {
           new_event = create_event(org_id)
           new_event.event_name = event_name
           Events.insert(new_event)
