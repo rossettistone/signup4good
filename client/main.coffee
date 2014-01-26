@@ -18,6 +18,8 @@ Template.topnav.events({
     $('.signup-modal').modal()
   'click .sign-out': () ->
     router.navigate 'sign_out', {trigger: true}
+  'click .aboutus': () ->
+    router.navigate 'aboutus', {trigger: true}
 })
 
 Template.front_event.events({
@@ -36,3 +38,6 @@ Template.router.showEventPage = () ->
 
 Template.router.showOrganizationPage = () ->
   Session.get('currentPage') == 'organizationPage'
+
+Template.router.showAboutUs = () ->
+  Session.get('currentPage') == 'aboutUsPage'
