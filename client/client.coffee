@@ -8,8 +8,8 @@ Template.homePage.users = () ->
 Template.homePage.organizations = () ->
   Organizations.find({}).fetch()
 
-Template.homePage.events = () ->
-  Events.find({}).fetch()
+Template.homePage.events = (skip, limit) ->
+  Events.find({}, {skip:skip, limit:limit}).fetch()
 
 Template.topnav.events({
   'click .home': () ->
