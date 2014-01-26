@@ -25,8 +25,10 @@ Template.event.events({
   'click .signup': () ->
     eventId = getEventData()._id
     Events.update({_id:eventId}, $push:{volunteers:Meteor.user()})
+    Meteor.call('sendEventRegEmail', Meteor.user().services.facebook.email, event.event_name)
   'click .unsignup': () ->
-    eventId = getEventData()._id
+    event = getEventData()
+    eventId = eventId._id
     Events.update({_id:eventId}, $pull:{volunteers:Meteor.user()})
 })
 
