@@ -104,14 +104,19 @@
 
 <template name="registration">
   <h2>Signup...</h2>
-  <div>
+  <div class="row">
     <div>...as a volunteer</div>
     {{loginButtons}}
   </div>
 
-  <div>
+  <div class="row" style="margin-top:10px">
     <div>...as an organization</div>
-    {{loginButtons}}
+    <form>
+      <p><input placeholder="Contact name"></p>
+      <p><input placeholder="Contact email"></p>
+      <p><input placeholder="Phone number"></p>
+      <p><input placeholder="Physical address"></p>
+    </form>
   </div>
 </template>
 
