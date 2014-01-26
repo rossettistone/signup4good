@@ -3,7 +3,8 @@ var Router = Backbone.Router.extend({
     "":                 "home", //this will be http://your_domain/
     "home":             "home", //this will be http://your_domain/
     "registration":     "registration",  // http://your_domain/registration
-    "login":            "login"
+    "login":            "login",
+    "sign_out":         "sign_out"
   },
 
   home: function() {
@@ -19,8 +20,11 @@ var Router = Backbone.Router.extend({
   login: function() {
     // Registration page/modal
     Session.set('currentPage', 'loginPage');
-  }
+  },
 
+  sign_out: function() {
+    Meteor.logout()
+  }
 });
 
 router = new Router;

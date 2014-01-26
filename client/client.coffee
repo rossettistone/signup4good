@@ -16,6 +16,8 @@ Template.topnav.events({
     router.navigate 'home', {trigger: true}
   'click .register': () ->
     router.navigate 'registration', {trigger: true}
+  'click .sign-out': () ->
+    router.navigate 'sign_out', {trigger: true}
 })
 
 
