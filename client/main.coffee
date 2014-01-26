@@ -15,7 +15,7 @@ Template.topnav.events({
   'click .home': () ->
     router.navigate 'home', {trigger: true}
   'click .register': () ->
-    $('.signup').modal()
+    $('.signup-modal').modal()
   'click .sign-out': () ->
     router.navigate 'sign_out', {trigger: true}
 })

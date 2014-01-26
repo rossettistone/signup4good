@@ -31,10 +31,10 @@ function create_event(org_id) {
 Meteor.methods({
   sendEventRegEmail: function (toAddress, eventName) {
     Email.send({
-      from: 'info@signup4good.com'
+      from: 'info@signup4good.com',
       to: toAddress,
       subject:'Thanks for registering for '+eventName,
-      text:'Thanks for registering to volunteer at '+eventName+'. It\'s time to get volunteering!'});
+      text:'Thanks for registering to volunteer at '+eventName+'. It\'s time to get volunteering!'
     });
   }
 });
