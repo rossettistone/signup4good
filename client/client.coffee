@@ -1,14 +1,14 @@
-Template.homePage.users = () ->
+Template.homePage.getUsers = () ->
   # database query here
   allUsers = Meteor.users.find().fetch();
   return _(allUsers).map( (user) ->
     return user
   )
 
-Template.homePage.organizations = () ->
+Template.homePage.getOrganizations = () ->
   Organizations.find({}).fetch()
 
-Template.homePage.events = (skip, limit) ->
+Template.homePage.getEvents = (skip, limit) ->
   Events.find({}, {skip:skip, limit:limit}).fetch()
 
 Template.topnav.events({
@@ -16,6 +16,12 @@ Template.topnav.events({
     router.navigate 'home', {trigger: true}
   'click .register': () ->
     router.navigate 'registration', {trigger: true}
+})
+
+Template.homePage.events({
+  'click .event': () ->
+    console.log this._id
+    router.navigate 'event/'+this._id, {trigger: true}
 })
 
 
