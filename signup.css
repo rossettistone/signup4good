@@ -1,3 +1,9 @@
 a {
     cursor: pointer;
 }
+
+.front-event img {
+    position: relative;
+    margin-top:24px;
+    height:70px;
+}
