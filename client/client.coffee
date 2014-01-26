@@ -35,8 +35,34 @@ Template.router.showEventPage = () ->
   Session.get('currentPage') == 'eventPage'
 
 Template.event.volunteers = () ->
+  event = getEventData()
+  spots = event.volunteers
+  while(spots.length < event.num_slots)
+    spots.push({name: "Wally"})
+  return spots
+
+Template.event.eventData = () ->
+  getEventData()
+
+Template.event.attending = () ->
+  event = getEventData()
+  isAttending = false
+  _(event.volunteers).each( (volunteer) ->
+    if(volunteer._id == Meteor.user()._id)
+      isAttending = true
+  )
+  return isAttending
+
+Template.event.events({
+  'click .signup': () ->
+    eventId = getEventData()._id
+    Events.update({_id:eventId}, $push:{volunteers:Meteor.user()})
+  'click .unsignup': () ->
+    eventId = getEventData()._id
+    Events.update({_id:eventId}, $pull:{volunteers:Meteor.user()})
+})
+
+getEventData = () ->
   url = Backbone.history.fragment
   eventId = url.slice(url.indexOf('/')+1)
-  event = Events.findOne({_id:eventId})
-  event.volunteers
-  # return [{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"},{name: "Bob"},{name: "Crissy"},{name: "Larry"},{name: "Bianca"},{name: "Miles"},{name: "Bob"},{name: "Bob"}]
+  Events.findOne({_id:eventId})

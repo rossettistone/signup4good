@@ -1,32 +1,41 @@
 <template name="event">
+  {{#with eventData}}
   <div class="row-fluid">
     <div class="well">
       <div class="span6">
         <div class="well well-small">
-          <h1>Event Title</h1>
+          <h1>{{event_name}}</h1>
           <div class="event-details">
-            <div>Time</div>
-            <div>Location</div>
+            <div>Time: {{time}}</div>
+            <div>Location: {{location}}</div>
+            <div>Type: {{type}}</div>
           </div>
         </div>
+        {{#if attending}}
+          <button class='unsignup btn btn-default'>Sorry, can't make it...</button>
+        {{else}}
+          <button class='signup btn btn-primary'>Sign Me Up!</button>
+        {{/if}}
       </div>
       <div class="span6">
         <div class="well well-small">
           <div>Organization</div>
-          <img src="http://upload.wikimedia.org/wikipedia/en/2/27/House_Atreides_Insignia.jpg" />
+          <img src="{{image_name}}" />
           <div>Description</div>
+          <div>{{description}}</div>
         </div>
       </div>
     </div>
   </div>
+  {{/with}}
   <div class="row-fluid">
     <h3>Spots</h3>
     <div class="row-fluid">
       {{#each volunteers}}
         <div class="grid-10">
           <div>
-            <div>{{name}}</div>
-            <img src="http://octodex.github.com/images/dunetocat.png" />
+            <div>{{profile.name}}</div>
+            <img src="{{profile.picture}}" />
           </div>
         </div>
       {{/each}}
