@@ -14,10 +14,23 @@ a {
 }
 
 .hero-unit {
-    background-image: url('collage.jpg');
+    background-image: url('hands.gif');
     background-size: cover;
 }
 
 .hero-unit h1, .hero-unit p {
-    background-color: #999;
+    color: black;
+    background-color: #C8C8C8;
+    	opacity: 0.75
+}
+
+.container-fluid {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.navbar {
+	background-color: black;
+	color: white;
 }
