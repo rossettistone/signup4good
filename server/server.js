@@ -41,6 +41,15 @@ Meteor.methods({
       subject:'Thanks for registering for '+eventName,
       text:'Thanks for registering to volunteer at '+eventName+'. It\'s time to get volunteering!'
     });
+  },
+  sendEventUnregEmail: function (toAddress, eventName) {
+    Email.send({
+      from: 'info@signup4good.com',
+      to: toAddress,
+      bcc: 'mark.a.rossetti@gmail.com',
+      subject:'You have been removed from the signup list for '+eventName,
+      text:'You have been removed for the signup list for '+eventName+'. We\'re sorry you won\'t be able to make it. Let us know if that changes!'
+    });
   }
 });
 

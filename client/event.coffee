@@ -35,6 +35,7 @@ Template.event.events({
     event = getEventData()
     eventId = event._id
     Events.update({_id:eventId}, $pull:{volunteers:Meteor.user()})
+    Meteor.call('sendEventUnregEmail', Meteor.user().services.facebook.email, event.event_name)
 });
 
 Template.messages.events({
