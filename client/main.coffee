@@ -29,7 +29,7 @@ Template.front_event.events({
 
 Template.homePage.events({
   'click .orglink': () ->
-    router.navigate 'organizations/'+this._id, {trigger: true}
+    router.navigate 'organization/'+this._id, {trigger: true}
 })
 
 Template.router.showHomePage = () ->
