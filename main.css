@@ -13,6 +13,12 @@ a {
     height:70px;
 }
 
+@media all and (max-width: 767px) {
+    .front-event img {
+        width:100px !important;
+    }
+}
+
 .hero-unit {
     background-image: url('hands.gif');
     background-size: cover;
