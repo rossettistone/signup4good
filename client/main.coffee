@@ -6,7 +6,7 @@ Template.homePage.getUsers = () ->
   )
 
 Template.homePage.getOrganizations = () ->
-  Organizations.find({}).fetch()
+  return Organizations.find({}).fetch()
 
 Template.homePage.getEvents = (skip, limit) ->
   Events.find({}, {skip:skip, limit:limit}).fetch()
@@ -24,7 +24,12 @@ Template.topnav.events({
 
 Template.front_event.events({
   'click .btn': () ->
-    router.navigate 'event/'+this._id, {trigger: true},
+    router.navigate 'event/'+this._id, {trigger: true}
+})
+
+Template.homePage.events({
+  'click .orglink': () ->
+    router.navigate 'organizations/'+this._id, {trigger: true}
 })
 
 Template.router.showHomePage = () ->
