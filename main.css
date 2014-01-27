@@ -7,6 +7,10 @@ a {
     float: left;
 }
 
+.brand img {
+    width: 100px;
+}
+
 .front-event img {
     position: relative;
     margin-top:24px;
