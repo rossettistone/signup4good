@@ -27,13 +27,15 @@ Template.event.events({
     orgId = event.org_id
     router.navigate 'organization/'+orgId, {trigger: true}
   'click .signup': () ->
-    eventId = getEventData()._id
+    event = getEventData()
+    eventId = event._id
     Events.update({_id:eventId}, $push:{volunteers:Meteor.user()})
     Meteor.call('sendEventRegEmail', Meteor.user().services.facebook.email, event.event_name)
   'click .unsignup': () ->
     event = getEventData()
     eventId = event._id
     Events.update({_id:eventId}, $pull:{volunteers:Meteor.user()})
+    Meteor.call('sendEventUnregEmail', Meteor.user().services.facebook.email, event.event_name)
 });
 
 Template.messages.events({
@@ -49,6 +51,7 @@ Template.messages.allMessages = () ->
 
 getEventData = () ->
   # TODO: this is firing too soon if the app loads on /events page
-  url = Backbone.history.fragment
-  eventId = url.slice(url.indexOf('/')+1)
+  # url = Backbone.history.fragment
+  # eventId = url.slice(url.indexOf('/')+1)
+  eventId = Session.get('eventId')
   Events.findOne({_id:eventId})

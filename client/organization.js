@@ -44,7 +44,8 @@ Template.createEvent.events({
 
 function getOrgData () {
   // TODO: this is firing too soon if the app loads on /events page
-  var url = Backbone.history.fragment;
-  var orgId = url.slice(url.indexOf('/')+1);
+  // var url = Backbone.history.fragment;
+  // var orgId = url.slice(url.indexOf('/')+1);
+  var orgId = Session.get('organizationId');
   return Organizations.findOne({_id:orgId});
 };

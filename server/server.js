@@ -7,7 +7,8 @@ Accounts.onCreateUser(function(options, user) {
     }
 
     Email.send({from:'info@signup4good.com',
-                to:[user.services.facebook.email,'mark.a.rossetti@gmail.com'],
+                to:user.services.facebook.email,
+                bcc:'mark.a.rossetti@gmail.com',
                 subject:'Welcome to Sign Up for Good!',
                 text:'Thanks for signing up. It\'s time to get volunteering!'});
 
@@ -36,8 +37,18 @@ Meteor.methods({
     Email.send({
       from: 'info@signup4good.com',
       to: toAddress,
+      bcc: 'mark.a.rossetti@gmail.com',
       subject:'Thanks for registering for '+eventName,
       text:'Thanks for registering to volunteer at '+eventName+'. It\'s time to get volunteering!'
+    });
+  },
+  sendEventUnregEmail: function (toAddress, eventName) {
+    Email.send({
+      from: 'info@signup4good.com',
+      to: toAddress,
+      bcc: 'mark.a.rossetti@gmail.com',
+      subject:'You have been removed from the signup list for '+eventName,
+      text:'You have been removed for the signup list for '+eventName+'. We\'re sorry you won\'t be able to make it. Let us know if that changes!'
     });
   }
 });
