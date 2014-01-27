@@ -20,6 +20,8 @@ Template.topnav.events({
     router.navigate 'sign_out', {trigger: true}
   'click .aboutus': () ->
     router.navigate 'aboutus', {trigger: true}
+  'click .homepageLink': () ->
+    router.navigate 'home', {trigger: true}
 })
 
 Template.front_event.events({

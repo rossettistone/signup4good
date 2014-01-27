@@ -12,35 +12,28 @@
 </body>
 
 <template name="router">
+  <div class="signup-modal modal fade well">
+    <form role="form">
+      <div class="form-group">
+        <h2>Signup...</h2>
+
+        <div class="radio">
+          <label>
+            <input type="radio" name="signup-type" checked>I'm a volunteer
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="signup-type">I'm an organization
+          </label>
+        </div>
+
+        {{loginButtons}}
+      </div>
+    </form>
+  </div>
   {{#if showHomePage}}
     {{> homePage}}
-    <div class="signup-modal modal fade well">
-      <form role="form">
-        <div class="form-group">
-          <h2>Signup...</h2>
-
-          <div class="radio">
-            <label>
-              <input type="radio" name="signup-type" checked>I'm a volunteer
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="signup-type">I'm an organization
-            </label>
-          </div>
-
-          {{loginButtons}}
-        </div>
-      </form>
-    </div>
-    <div class="org-modal modal fade well">
-      <form role="form">
-        <div class="form-group">
-          <h2>Organization info</h2>
-        </div>
-      </form>
-    </div>
   {{/if}}
   {{#if showEventPage}}
     {{> event}}
@@ -119,7 +112,7 @@
 <template name="topnav">
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="/">signup4good</a>
+    <a class="brand homepageLink">signup4good</a>
     <ul class="nav">
       <li class='register'><a>Get started</a></li>
       <li class="aboutus"><a>About Us</a></li>
